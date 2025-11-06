@@ -1,11 +1,18 @@
 /** @format */
 
 import { Outlet } from "react-router-dom";
+import NavBor from "../components/NavBor";
 
 export default function Layout() {
   return (
-    <main>
-      <Outlet />
-    </main>
+    <>
+      <header>
+        <NavBor />
+      </header>
+
+      <main className="mt-[90px]">
+        <Outlet />
+      </main>
+    </>
   );
 }
