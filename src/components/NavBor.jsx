@@ -1,6 +1,7 @@
 /** @format */
 import { useState } from "react";
 import { FaTimes } from "react-icons/fa";
+import { FaChevronDown } from "react-icons/fa6";
 
 import { RiMenu3Line, RiSearch2Line, RiShoppingCartLine } from "react-icons/ri";
 import { Link } from "react-router-dom";
@@ -51,9 +52,9 @@ export default function NavBor() {
           </button>
 
           <div
-            className={`absolute left-0 z-20 mt-3 w-[230px] rounded-md bg-white p-3 shadow-lg transition-all duration-300 ease-in-out ${
+            className={`absolute left-0 z-50 mt-3 w-[230px] rounded-md bg-white p-3 shadow-lg transition-all duration-300 ease-in-out ${
               isCategoryOpen
-                ? "visible translate-y-0 opacity-100"
+                ? "visible -translate-y-0.5 opacity-100"
                 : "invisible -translate-y-5 opacity-0"
             }`}
           >
@@ -99,7 +100,7 @@ export default function NavBor() {
 
           <button
             className="cursor-pointer lg:hidden"
-            onClick={() => setIsCategoryOpen(true)}
+            onClick={() => setIsSidebarOpen(true)}
           >
             <RiMenu3Line color="#000" size={25} />
           </button>
@@ -119,12 +120,12 @@ export default function NavBor() {
       </nav>
       {/* Sidebar*/}
       <div
-        className={`fixed inset-0 top-0 left-0 z-40 h-screen w-full bg-[#00000001b] p-5 opacity-50 backdrop-blur-sm transition-opacity duration-300 ${isSidebarOpen ? "translate-x-0" : "translate-x-full"}`}
+        className={`fixed inset-0 top-0 left-0 z-40 h-screen w-full bg-[#00000001b] p-5 opacity-50 backdrop-blur-sm transition-opacity duration-300 ${isSidebarOpen ? "visible opacity-100" : "invisible opacity-0"}`}
         onClick={() => setIsSidebarOpen(false)}
       ></div>
 
       <div
-        className={`fixed top-0 left-0 z-50 h-screen w-[80%] bg-gray-900 p-5 shadow-lg transition-transform duration-300 sm:w-[50%] md:w-[350px] ${isSidebarOpen ? "translate-x-0" : "translate-x-full"}`}
+        className={`fixed top-0 left-0 z-50 h-screen w-[80%] bg-gray-900 p-5 shadow-lg transition-transform duration-300 sm:w-[50%] md:w-[350px] ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"}`}
       >
         <Link to="/">
           <h1 className="text-xl font-bold text-white">
@@ -150,6 +151,56 @@ export default function NavBor() {
               <RiSearch2Line color="#fff" size={20} />
             </button>
           </form>
+
+          <div className="mt-10 flex flex-col gap-2">
+            <button
+              className="flex w-full items-center justify-between text-left text-lg font-medium"
+              onClick={() => setIsCategoryDropdownOpen(!isCategoryDropdownOpen)}
+            >
+              Categoty
+              <FaChevronDown
+                color="#fff"
+                className={`transition-transform duration-300 ${isCategoryDropdownOpen ? "rotate-180" : ""}`}
+              />
+            </button>
+
+            <div
+              className={`overflow-hidden transition-all duration-300 ${isCategoryDropdownOpen ? "max-h-[500px]" : "max-h-0"}`}
+            >
+              <ul className="scrollbar-thin scrollbar-thumb-purple-500 scrollbar-track-gray-100 flex h-[250px] flex-col overflow-x-auto">
+                {CourseCategories.map((cat) => (
+                  <li key={cat}>
+                    <Link className="cursor-pointer text-white/70 hover:text-purple-500">
+                      {cat}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <Link
+              to="#"
+              className={`text-lg font-medium hover:text-purple-500 ${isCategoryDropdownOpen ? "py-3" : ""}`}
+            >
+              Become an Instuctor
+            </Link>
+          </div>
+
+          <div className="absolute bottom-20 flex w-full flex-col items-center gap-2">
+            <Link
+              className="w-full rounded-md bg-purple-600 px-6 py-3 text-center text-lg font-medium text-white"
+              to="#"
+            >
+              Login
+            </Link>
+
+            <Link
+              className="w-full rounded-md bg-purple-600 px-6 py-3 text-center text-lg font-medium text-white"
+              to="#"
+            >
+              Sign-Up
+            </Link>
+          </div>
         </nav>
       </div>
     </div>

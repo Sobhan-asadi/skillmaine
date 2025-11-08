@@ -10,7 +10,7 @@ export default function Layout() {
         <NavBor />
       </header>
 
-      <main className="mt-[90px]">
+      <main className="mt-[75px]">
         <Outlet />
       </main>
     </>
