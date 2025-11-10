@@ -38,6 +38,7 @@ export default function Category() {
       <div className="mt-8 grid w-full grid-cols-1 justify-center gap-7 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {categories.map((cate) => (
           <Link
+            key={cate.id}
             to="/"
             className="group flex w-full items-center gap-4 rounded-md border border-gray-400 px-4 py-4 transition-all duration-150 ease-in hover:bg-purple-500 hover:text-white md:flex-col md:px-10"
           >
