@@ -1,7 +1,9 @@
 /** @format */
 import { RiSearch2Line } from "react-icons/ri";
-import Category from "../components/Category";
-import PopularCourses from "../components/PopularCourses";
+import Category from "../components/home/Category";
+import DescriptionNoticeSection from "../components/home/DescriptionNoticeSection";
+import PopularCourses from "../components/home/PopularCourses";
+import TestimonialsSection from "../components/home/TestimonialsSection";
 
 const skillImag1 = "/icons/diploma.png";
 const skillImag2 = "/icons/education.png";
@@ -102,6 +104,16 @@ export default function Homepage() {
       {/* PopularCourses */}
       <section className="mt-[90px] flex w-full flex-col items-center justify-center gap-10">
         <PopularCourses />
+      </section>
+
+      {/* DescriptionNoticeSection */}
+      <section>
+        <DescriptionNoticeSection />
+      </section>
+
+      {/* TestimonialsSection */}
+      <section>
+        <TestimonialsSection />
       </section>
     </>
   );

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import SimpleStarRating from "./SimpleStarRating";
+import SimpleStarRating from "../SimpleStarRating";
 
 const popularcourses1 = "/popularcourses/popularcourses1.webp";
 const popularcourses2 = "/popularcourses/popularcourses2.webp";
@@ -156,7 +156,7 @@ export default function PopularCourses() {
             <button
               key={item}
               onClick={() => setSelectedCategory(item)}
-              className={`cursor-pointer rounded-md px-2 py-2 hover:bg-purple-500 hover:text-white ${selectedCategory === item ? "bg-purple-600 text-white" : "bg-gray-100"}`}
+              className={`cursor-pointer rounded-md px-3 py-2 hover:bg-purple-500 hover:text-white ${selectedCategory === item ? "bg-purple-600 text-white" : "bg-gray-200"}`}
             >
               {item}
             </button>
@@ -168,7 +168,7 @@ export default function PopularCourses() {
           <Link
             to="/"
             key={course.id}
-            className="group relative flex flex-col items-start gap-2 overflow-hidden rounded-lg border border-gray-300 p-2 transition-all duration-150 ease-in"
+            className="group relative flex flex-col items-start gap-2 overflow-hidden rounded-lg border border-gray-300 p-2 shadow-md shadow-purple-400 transition-all duration-150 ease-in"
           >
             <div className="w-full overflow-hidden">
               <img
@@ -204,6 +204,7 @@ export default function PopularCourses() {
               <p className="text-lg font-semibold text-purple-900">
                 {course.price}
               </p>
+
               <p className="text-red-700 line-through">
                 {course.canceledPrice}
               </p>
@@ -211,6 +212,10 @@ export default function PopularCourses() {
           </Link>
         ))}
       </div>
+
+      <button className="mt-20 w-[250px] cursor-pointer rounded-xl border bg-purple-600 p-4 text-lg font-semibold text-white hover:bg-purple-700">
+        View More Courses
+      </button>
     </div>
   );
 }
