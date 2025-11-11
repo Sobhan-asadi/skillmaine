@@ -32,24 +32,7 @@ const testimonialsData = {
       text: "The platform's intuitive interface made learning enjoyable. I landed my dream job after completing the design course.",
       company: "DesignStudio",
     },
-    {
-      id: 4,
-      name: "Alex Thompson",
-      role: "Full Stack Developer",
-      rating: 5,
-      avatar: "",
-      text: "The project-based approach helped me build a strong portfolio. I received multiple job offers within weeks.",
-      company: "StartUpHub",
-    },
-    {
-      id: 5,
-      name: "Priya Patel",
-      role: "Product Manager",
-      rating: 4,
-      avatar: "",
-      text: "The community support and mentor guidance were invaluable. I advanced to senior PM role faster than expected.",
-      company: "ProductLabs",
-    },
+
     {
       id: 6,
       name: "David Kim",

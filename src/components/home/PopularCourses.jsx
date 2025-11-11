@@ -166,7 +166,8 @@ export default function PopularCourses() {
       <div className="mt-10 grid w-full gap-7 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {popularCourses.map((course) => (
           <Link
-            to="/"
+            to={`${course.id}`}
+            state={course}
             key={course.id}
             className="group relative flex flex-col items-start gap-2 overflow-hidden rounded-lg border border-gray-300 p-2 shadow-md shadow-purple-400 transition-all duration-150 ease-in"
           >

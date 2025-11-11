@@ -107,12 +107,12 @@ export default function Homepage() {
       </section>
 
       {/* DescriptionNoticeSection */}
-      <section>
+      <section className="max-w-[1400px]">
         <DescriptionNoticeSection />
       </section>
 
       {/* TestimonialsSection */}
-      <section>
+      <section className="max-w-[1400px]">
         <TestimonialsSection />
       </section>
     </>
