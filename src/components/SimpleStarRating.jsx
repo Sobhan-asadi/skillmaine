@@ -1,4 +1,6 @@
-export default function SimpleStarRating({ rating }) {
+export default function SimpleStarRating({ rating, color }) {
+  console.log(color);
+
   return (
     <div className="flex items-center gap-1">
       <div className="relative flex">
@@ -21,7 +23,11 @@ export default function SimpleStarRating({ rating }) {
           ))}
         </div>
       </div>
-      <span className="ml-1 text-sm text-gray-600">({rating})</span>
+      <span
+        className={`ml-1 text-sm ${color !== undefined ? color : "text-gray-600"}`}
+      >
+        ({rating})
+      </span>
     </div>
   );
 }
