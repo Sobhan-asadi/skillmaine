@@ -1,14 +1,5 @@
 import { useState } from "react";
 
-import {
-  RiBook3Fill,
-  RiCustomerService2Fill,
-  RiDownload2Fill,
-  RiInfinityLine,
-  RiMedal2Fill,
-  RiTvFill,
-  RiVideoFill,
-} from "react-icons/ri";
 import { useLocation } from "react-router-dom";
 
 import CourseDetailMain from "./CourseDetailMain";
@@ -148,50 +139,6 @@ const recentvisits = [
   },
 ];
 
-const courseFeatures = [
-  {
-    id: "a-1",
-    icon: <RiVideoFill size={20} className="text-gray-700" />,
-    text: "22 hours on-demand video",
-  },
-
-  {
-    id: "s-2",
-    icon: <RiDownload2Fill size={20} className="text-gray-700" />,
-    text: "Downloadable resources",
-  },
-
-  {
-    id: "d-3",
-    icon: <RiTvFill size={20} className="text-gray-700" />,
-    text: "Watch on TV and mobile",
-  },
-
-  {
-    id: "f-4",
-    icon: <RiInfinityLine size={20} className="text-gray-700" />,
-    text: "Full lifetime access",
-  },
-
-  {
-    id: "g-5",
-    icon: <RiMedal2Fill size={20} className="text-gray-700" />,
-    text: "Certificate of completion",
-  },
-
-  {
-    id: "h-6",
-    icon: <RiBook3Fill size={20} className="text-gray-700" />,
-    text: "Interactive exercises",
-  },
-
-  {
-    id: "j-7",
-    icon: <RiCustomerService2Fill size={20} className="text-gray-700" />,
-    text: "24/7 support assistance",
-  },
-];
-
 export default function ItemDetails() {
   const location = useLocation();
 
@@ -233,7 +180,14 @@ export default function ItemDetails() {
       />
 
       {/* CourseDetailMain  */}
-      <CourseDetailMain />
+      <CourseDetailMain
+        name={tutorName}
+        level={level}
+        rating={rating}
+        recentvisits={recentvisits}
+        canceledPrice={canceledPrice}
+        price={price}
+      />
     </div>
   );
 }

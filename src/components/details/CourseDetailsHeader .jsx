@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { RiPlayCircleLine } from "react-icons/ri";
 import SimpleStarRating from "../SimpleStarRating";
 
@@ -11,6 +11,11 @@ export default function CourseDetailsHeader({
   img,
 }) {
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="relative h-full w-full bg-gray-800 py-5">
       <div className="mx-auto flex max-w-[1400px] flex-col items-center justify-between gap-10 px-5 lg:flex-row lg:px-10">
@@ -57,11 +62,11 @@ export default function CourseDetailsHeader({
             mozallowfullscreen="true"
           ></iframe>
         ) : (
-          <div className="relative flex h-[400px] w-full items-center justify-center">
+          <div className="relative flex h-[400px] w-full items-center justify-center rounded-lg">
             <img
               src={img}
               alt={title}
-              className="absolute z-20 h-full w-full object-cover"
+              className="absolute z-20 h-full w-full rounded-lg object-cover"
             />
             <div className="absolute z-30 h-full w-full rounded-sm bg-[#000000a2]">
               <button
