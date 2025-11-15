@@ -1,4 +1,4 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import {
   RiBook3Fill,
@@ -17,6 +17,7 @@ import {
 import SimpleStarRating from "../SimpleStarRating";
 import RequirementsSection from "./RequirementsSection";
 
+import toast from "react-hot-toast";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -106,7 +107,19 @@ export default function CourseDetailMain({
   title,
   courseImage,
 }) {
+  const cartItems = useSelector((state) => state.cart.items);
+
   const dispatch = useDispatch();
+
+  let newPrice = price.split("$")[1];
+  let newCanceledPrice = canceledPrice.split("$")[1];
+
+  if (newPrice === undefined) {
+    newPrice = 0;
+  }
+  if (newCanceledPrice === undefined) {
+    newCanceledPrice = 0;
+  }
 
   return (
     <main className="relative mx-auto flex max-w-[1400px] flex-col px-5 lg:px-10">
@@ -188,19 +201,28 @@ export default function CourseDetailMain({
             </div>
 
             <button
-              onClick={() =>
-                dispatch(
-                  addToCart({
-                    id: Date.now(),
-                    name: name,
-                    price: price,
-                    canceledPrice: canceledPrice,
-                    image: courseImage,
-                    title: title,
-                    quantity: 1,
-                  }),
-                )
-              }
+              onClick={() => {
+                const isAlreadyInCart = cartItems.some(
+                  (item) => item.name === name,
+                );
+
+                if (isAlreadyInCart) {
+                  toast.error("This course is already in your cart.");
+                } else {
+                  dispatch(
+                    addToCart({
+                      id: Date.now(),
+                      name: name,
+                      price: newPrice,
+                      canceledPrice: newCanceledPrice,
+                      image: courseImage,
+                      title: title,
+                      quantity: 1,
+                    }),
+                  );
+                  toast.success("Course successfully added to cart!");
+                }
+              }}
               className="w-full cursor-pointer rounded-md border border-purple-600 bg-white p-2 font-semibold text-gray-700 transition-all duration-300 hover:bg-purple-600 hover:text-white"
             >
               Add to cart

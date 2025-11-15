@@ -159,7 +159,7 @@ export default function SwiperSlider() {
           prevEl: ".prev-btn",
         }}
         modules={[FreeMode, Navigation, Pagination]}
-        className="w-full p-5"
+        className="mt-5 w-full p-5"
         breakpoints={{
           340: { slidesPerView: 1 },
           540: { slidesPerView: 2 },

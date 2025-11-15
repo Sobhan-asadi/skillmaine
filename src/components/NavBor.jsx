@@ -4,6 +4,7 @@ import { FaTimes } from "react-icons/fa";
 import { FaChevronDown } from "react-icons/fa6";
 
 import { RiMenu3Line, RiSearch2Line, RiShoppingCartLine } from "react-icons/ri";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 const CourseCategories = [
@@ -29,6 +30,7 @@ export default function NavBor() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isCategoryOpen, setIsCategoryOpen] = useState(false);
   const [isCategoryDropdownOpen, setIsCategoryDropdownOpen] = useState(false);
+  const lengthCart = useSelector((state) => state.cart.items);
 
   return (
     <div className="fixed top-0 right-0 left-0 z-40 flex w-full items-center justify-center bg-white shadow-md">
@@ -94,7 +96,7 @@ export default function NavBor() {
           <Link to="Shopping-cart" className="relative cursor-pointer p-2">
             <RiShoppingCartLine color="#000" size={25} />
             <span className="absolute -top-0.5 right-px flex h-5 w-fit items-center justify-center rounded-full bg-purple-600 p-1.5 text-sm font-medium text-white">
-              3
+              {lengthCart.length}
             </span>
           </Link>
 
