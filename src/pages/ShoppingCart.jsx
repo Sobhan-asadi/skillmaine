@@ -101,7 +101,10 @@ export default function ShoppingCart() {
           <div className="mt-2 flex justify-between text-gray-700">
             <span className="text-[15px] font-bold">% discount :</span>
             <span className="text-green-600">
-              %{discountPercentage === 0 ? 0 : discountPercentage.toFixed(2)}
+              %
+              {discountPercentage === undefined || discountPercentage === 0
+                ? 0
+                : discountPercentage.toFixed(2)}
             </span>
           </div>
 
