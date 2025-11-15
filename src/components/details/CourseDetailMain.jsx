@@ -1,6 +1,6 @@
+import { useDispatch } from "react-redux";
+
 import {
-  RiArrowLeftLine,
-  RiArrowRightLine,
   RiBook3Fill,
   RiBookOpenLine,
   RiCustomerService2Fill,
@@ -17,12 +17,11 @@ import {
 import SimpleStarRating from "../SimpleStarRating";
 import RequirementsSection from "./RequirementsSection";
 
-import { FreeMode, Navigation, Pagination } from "swiper/modules";
-import { Swiper, SwiperSlide } from "swiper/react";
-
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import SwiperSlider from "../../lib/SwiperSlider";
+import { addToCart } from "../../store/CartSlice";
 
 const requirements = [
   "Basic understanding of HTML, CSS, and JavaScript",
@@ -37,6 +36,21 @@ const requirements = [
   "Willingness to learn and practice advanced React concepts",
   "Some knowledge of Next.js (optional but beneficial)",
   "Patience and curiosity to solve problems and debug code",
+];
+
+const learnings = [
+  "Build modern and responsive web applications using React.js",
+  "Master React hooks like useState, useEffect, and useContext",
+  "Use Tailwind CSS to create clean and beautiful UI designs",
+  "Manage application state efficiently with React's built-in features",
+  "Work with APIs using Fetch and Axios for data fetching",
+  "Implement routing and navigation using React Router",
+  "Optimize React applications for performance and reusability",
+  "Understand component lifecycle and best practices",
+  "Deploy React applications using platforms like Vercel or Netlify",
+  "Gain hands-on experience with real-world projects",
+  "Learn Next.js fundamentals for server-side rendering (optional)",
+  "Enhance problem-solving skills by debugging and troubleshooting issues",
 ];
 
 const courseFeatures = [
@@ -83,29 +97,17 @@ const courseFeatures = [
   },
 ];
 
-const learnings = [
-  "Build modern and responsive web applications using React.js",
-  "Master React hooks like useState, useEffect, and useContext",
-  "Use Tailwind CSS to create clean and beautiful UI designs",
-  "Manage application state efficiently with React's built-in features",
-  "Work with APIs using Fetch and Axios for data fetching",
-  "Implement routing and navigation using React Router",
-  "Optimize React applications for performance and reusability",
-  "Understand component lifecycle and best practices",
-  "Deploy React applications using platforms like Vercel or Netlify",
-  "Gain hands-on experience with real-world projects",
-  "Learn Next.js fundamentals for server-side rendering (optional)",
-  "Enhance problem-solving skills by debugging and troubleshooting issues",
-];
-
 export default function CourseDetailMain({
   name,
   level,
   rating,
-  recentvisits,
   canceledPrice,
   price,
+  title,
+  courseImage,
 }) {
+  const dispatch = useDispatch();
+
   return (
     <main className="relative mx-auto flex max-w-[1400px] flex-col px-5 lg:px-10">
       <div className="relative flex flex-col gap-3 py-10 lg:flex-row">
@@ -163,62 +165,7 @@ export default function CourseDetailMain({
               <h3 className="w-full text-start text-xl font-bold text-gray-800 md:text-2xl">
                 You also viewed
               </h3>
-
-              <Swiper
-                spaceBetween={20}
-                freeMode={false}
-                autoplay={{
-                  enabled: true,
-                  delay: 200,
-                  disableOnInteraction: false,
-                }}
-                loop={true}
-                navigation={{
-                  enabled: true,
-                  nextEl: ".next-btn",
-                  prevEl: ".prev-btn",
-                }}
-                modules={[FreeMode, Navigation, Pagination]}
-                className="w-full p-5"
-                breakpoints={{
-                  340: { slidesPerView: 1 },
-                  540: { slidesPerView: 2 },
-                  1024: { slidesPerView: 2 },
-                  1280: { slidesPerView: 3 },
-                }}
-              >
-                {recentvisits.map((view) => (
-                  <SwiperSlide className="mb-6 flex" key={view.id}>
-                    <div className="rounded-md border border-gray-100 bg-white p-4">
-                      <img
-                        src={view.courseImage}
-                        alt={view.title}
-                        className="h-32 w-full rounded-md object-cover"
-                      />
-                      <h3 className="mt-3 truncate text-sm text-gray-600">
-                        {view.title}
-                      </h3>
-                      <p className="mt-3 text-sm text-gray-600">
-                        {view.tutorName}
-                      </p>
-                      <p className="mt-1 font-medium">
-                        {view.canceledPrice !== "" ? view.price : "Free"}
-                      </p>
-                      <button className="mt-3 w-full cursor-pointer rounded-md bg-purple-500 py-2 text-white transition-all hover:bg-purple-700">
-                        Add to Cart
-                      </button>
-                    </div>
-                  </SwiperSlide>
-                ))}
-              </Swiper>
-              <div className="flex gap-10">
-                <button className="prev-btn cursor-pointer rounded-full bg-purple-500 p-2">
-                  <RiArrowLeftLine color="white" size={29} />
-                </button>
-                <button className="next-btn cursor-pointer rounded-full bg-purple-500 p-2">
-                  <RiArrowRightLine color="white" size={29} />
-                </button>
-              </div>
+              <SwiperSlider />
             </div>
           </div>
         </div>
@@ -240,7 +187,22 @@ export default function CourseDetailMain({
               </button>
             </div>
 
-            <button className="w-full cursor-pointer rounded-md border border-purple-600 bg-white p-2 font-semibold text-gray-700 transition-all duration-300 hover:bg-purple-600 hover:text-white">
+            <button
+              onClick={() =>
+                dispatch(
+                  addToCart({
+                    id: Date.now(),
+                    name: name,
+                    price: price,
+                    canceledPrice: canceledPrice,
+                    image: courseImage,
+                    title: title,
+                    quantity: 1,
+                  }),
+                )
+              }
+              className="w-full cursor-pointer rounded-md border border-purple-600 bg-white p-2 font-semibold text-gray-700 transition-all duration-300 hover:bg-purple-600 hover:text-white"
+            >
               Add to cart
             </button>
           </div>

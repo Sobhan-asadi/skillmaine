@@ -91,7 +91,7 @@ export default function NavBor() {
         </Link>
 
         <div className="flex min-h-10 items-center gap-4">
-          <Link to="#" className="relative cursor-pointer p-2">
+          <Link to="Shopping-cart" className="relative cursor-pointer p-2">
             <RiShoppingCartLine color="#000" size={25} />
             <span className="absolute -top-0.5 right-px flex h-5 w-fit items-center justify-center rounded-full bg-purple-600 p-1.5 text-sm font-medium text-white">
               3

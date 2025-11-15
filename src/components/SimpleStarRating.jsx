@@ -1,6 +1,4 @@
 export default function SimpleStarRating({ rating, color }) {
-  console.log(color);
-
   return (
     <div className="flex items-center gap-1">
       <div className="relative flex">
