@@ -32,6 +32,10 @@ export default function ShoppingCart() {
     }
   });
 
+  if (isNaN(discountPercentage)) {
+    discountPercentage = 0;
+  }
+
   return (
     <div className="mx-auto max-w-[1400px] px-5 py-10 lg:px-10">
       <p className="mb-3 text-xl font-bold text-gray-800 md:mb-6 md:text-2xl">
