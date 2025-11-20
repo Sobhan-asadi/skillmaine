@@ -156,7 +156,7 @@ export default function PopularCourses() {
             <button
               key={item}
               onClick={() => setSelectedCategory(item)}
-              className={`cursor-pointer rounded-md px-3 py-2 hover:bg-purple-500 hover:text-white ${selectedCategory === item ? "bg-purple-600 text-white" : "bg-gray-200"}`}
+              className={`cursor-pointer rounded-md px-3 py-2 whitespace-nowrap hover:bg-purple-500 hover:text-white ${selectedCategory === item ? "bg-purple-600 text-white" : "bg-gray-200"}`}
             >
               {item}
             </button>
