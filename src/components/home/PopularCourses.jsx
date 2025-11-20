@@ -150,7 +150,7 @@ export default function PopularCourses() {
         Top categories
       </h1>
 
-      <div className="scrollbar-thin scrollbar-thumb-purple-500 scrollbar-track-gray-100 mt-5 flex w-full items-start gap-2 overflow-x-auto md:justify-center">
+      <div className="scrollbar-thin scrollbar-thumb-purple-500 scrollbar-track-gray-100 mt-5 flex w-full items-start gap-2 overflow-x-auto py-3 md:justify-center">
         {["All", "Trending", "Popular", "Featured", "Arts & Desing"].map(
           (item) => (
             <button
