@@ -1,45 +1,120 @@
-<!-- @format -->
+# SkillMaine
 
-# 🚀 SkillMaine
+SkillMaine is a responsive learning-platform frontend built with React 19 and Vite.
 
-**SkillMaine** is a modern, high-performance React application built with **Vite**, **Tailwind CSS**, and the latest React 19 architecture.  
-It’s designed with clean code principles, modular structure, and smooth UI/UX animations using **Framer Motion**.
+The project focuses on course discovery rather than a full LMS workflow. Users can explore a searchable course catalog, filter and sort courses, inspect detailed course information and curricula, follow curated learning paths, and maintain a persistent learning cart.
 
----
+> This is a portfolio demonstration project. Course data, instructors, reviews, enrollment, and checkout behavior are simulated and no real payments are processed.
 
-## 🧱 Tech Stack
+## Live Demo
 
-| Category               | Technologies                                                                                                                                                      |
-| ---------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Frontend Framework** | [React 19](https://react.dev/)                                                                                                                                    |
-| **Routing**            | [React Router DOM 7](https://reactrouter.com/)                                                                                                                    |
-| **Styling**            | [Tailwind CSS 4](https://tailwindcss.com/) + Vite plugin                                                                                                          |
-| **Animations**         | [Framer Motion 12](https://www.framer.com/motion/)                                                                                                                |
-| **UI Enhancements**    | [React Icons](https://react-icons.github.io/react-icons), [Swiper](https://swiperjs.com/), [React Star Ratings](https://www.npmjs.com/package/react-star-ratings) |
-| **Build Tool**         | [Vite 7](https://vitejs.dev/)                                                                                                                                     |
-| **Linting**            | [ESLint 9](https://eslint.org/) with React Hooks and Refresh plugins                                                                                              |
+https://skillmaine.netlify.app/
 
----
+## Features
 
-## ⚙️ Setup & Installation
+- Searchable course catalog
+- Category and level filtering
+- Featured, rating, and price sorting
+- Dynamic course detail pages
+- Course curriculum and requirements
+- Curated learning paths
+- Persistent Redux cart using localStorage
+- Demo checkout interaction
+- Responsive desktop and mobile navigation
+- Loading, error, empty, and 404 states
+- Route-specific page titles and descriptions
+- SPA routing configured for Netlify deployment
+
+## Tech Stack
+
+- React 19
+- Vite 7
+- React Router
+- TanStack Query
+- Redux Toolkit
+- Tailwind CSS 4
+- React Hot Toast
+- React Icons
+- ESLint
+
+## Architecture
+
+The project separates server-state-style course retrieval, global cart state, routing, and presentation concerns.
+
+```text
+src/
+├── api/
+├── components/
+│   ├── about/
+│   ├── cart/
+│   ├── catalog/
+│   ├── details/
+│   ├── experiences/
+│   ├── home/
+│   └── navigation/
+├── pages/
+├── routes/
+└── store/
+```
+
+Course data is served as static JSON from the `public/data` directory. TanStack Query manages course fetching and cache behavior, while Redux Toolkit manages the learning cart and persists selected courses to `localStorage`.
+
+## Main Routes
+
+```text
+/                       Home
+/courses                Course catalog
+/courses/:courseId      Course details
+/experiences            Learning paths
+/about                  About the platform
+/cart                   Learning cart
+```
+
+Unknown routes are handled by a custom 404 experience.
+
+## Getting Started
 
 ### Prerequisites
 
-Make sure you have:
+- Node.js
+- npm
 
-- **Node.js** ≥ 18
-- **npm**, **yarn**, or **pnpm**
-
-### Install & Run
+### Installation
 
 ```bash
-# Clone the repository
-git clone <repository-url>
+git clone https://github.com/Sobhan-asadi/skillmaine.git
 cd skillmaine
-
-# Install dependencies
 npm install
-
-# Start the development server
 npm run dev
 ```
+
+## Production Build
+
+```bash
+npm run lint
+npm run build
+```
+
+The production build is deployed on Netlify. A `_redirects` fallback is included so client-side React Router routes continue to work when opened or refreshed directly.
+
+## Project Scope
+
+SkillMaine intentionally focuses on frontend product experience and architecture rather than pretending to provide production LMS functionality.
+
+The project does not implement:
+
+- Real authentication
+- Real enrollment
+- Payment processing
+- Certificates
+- Instructor dashboards
+- A production backend
+
+These boundaries keep the demo behavior explicit and the implementation aligned with the actual scope of the project.
+
+## Author
+
+**Sobhan Asadi**
+
+- GitHub: https://github.com/Sobhan-asadi
+- Portfolio: https://sobhanportfolio.netlify.app
