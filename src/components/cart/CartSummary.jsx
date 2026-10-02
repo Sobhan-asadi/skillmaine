@@ -1,3 +1,4 @@
+import toast from "react-hot-toast";
 import { HiArrowRight } from "react-icons/hi2";
 
 export default function CartSummary({
@@ -6,6 +7,10 @@ export default function CartSummary({
   totalSavings,
   totalPrice,
 }) {
+  function handleDemoCheckout() {
+    toast.success("Demo checkout complete — no payment was processed.");
+  }
+
   return (
     <aside className="lg:sticky lg:top-[96px]">
       <div className="border-ink bg-paper border-2">
@@ -58,15 +63,16 @@ export default function CartSummary({
         <div className="border-ink border-t-2 p-5">
           <button
             type="button"
+            onClick={handleDemoCheckout}
             className="focus-ring bg-lime text-ink hover:bg-ink flex min-h-13 w-full items-center justify-between px-5 text-xs font-black tracking-[0.03em] uppercase transition hover:-translate-y-0.5 hover:text-white"
           >
-            Proceed to checkout
+            Complete demo checkout
             <HiArrowRight aria-hidden="true" className="text-lg" />
           </button>
 
           <p className="text-ink/40 mt-4 text-xs leading-5">
-            This portfolio project uses a demo learning flow. No real payment is
-            processed.
+            Portfolio demonstration only. No account, enrollment, or real
+            payment is created.
           </p>
         </div>
       </div>

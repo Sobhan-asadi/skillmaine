@@ -1,9 +1,16 @@
 import { HiArrowLeft, HiArrowRight } from "react-icons/hi2";
 import { Link } from "react-router-dom";
 
+import Seo from "../components/Seo";
+
 export default function NotFoundPage() {
   return (
     <main className="bg-canvas min-h-screen pt-[72px]">
+      <Seo
+        title="Page Not Found"
+        description="The page you're looking for doesn't exist or may have moved. Explore the SkillMaine course catalog to continue learning."
+      />
+
       <section className="site-container py-16 sm:py-20 lg:py-28">
         <div className="border-ink bg-paper grid min-h-[560px] overflow-hidden border-2 lg:grid-cols-[minmax(0,1fr)_380px]">
           <div className="flex flex-col justify-center p-6 sm:p-10 lg:p-14">

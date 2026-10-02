@@ -7,6 +7,7 @@ import {
 import { Link, useParams } from "react-router-dom";
 
 import { fetchCourseById } from "../api/courses";
+import Seo from "../components/Seo";
 import ItemDetails from "../components/details/ItemDetails";
 import NotFoundPage from "./NotFoundPage";
 
@@ -35,6 +36,11 @@ export default function DetailsPage() {
   if (isPending) {
     return (
       <main className="bg-canvas min-h-screen pt-[72px]">
+        <Seo
+          title="Course"
+          description="Explore course details, curriculum, skills, and learning information on SkillMaine."
+        />
+
         <div className="site-container py-14 sm:py-16 lg:py-20">
           <div
             aria-label="Loading course details"
@@ -67,6 +73,11 @@ export default function DetailsPage() {
   if (isError) {
     return (
       <main className="bg-canvas flex min-h-screen items-center pt-[72px]">
+        <Seo
+          title="Course Unavailable"
+          description="This SkillMaine course is temporarily unavailable."
+        />
+
         <div className="site-container py-16">
           <div
             role="alert"
@@ -88,7 +99,7 @@ export default function DetailsPage() {
             </h1>
 
             <p className="text-ink/55 mt-4 max-w-[560px] text-sm leading-6">
-              The course server is currently unavailable. Please try again.
+              The course data is currently unavailable. Please try again.
             </p>
 
             <div className="mt-8 flex flex-wrap gap-3">
@@ -112,5 +123,17 @@ export default function DetailsPage() {
     );
   }
 
-  return <ItemDetails course={course} />;
+  return (
+    <>
+      <Seo
+        title={course.title}
+        description={
+          course.shortDescription ||
+          `Explore ${course.title} course details, curriculum, and skills on SkillMaine.`
+        }
+      />
+
+      <ItemDetails course={course} />
+    </>
+  );
 }

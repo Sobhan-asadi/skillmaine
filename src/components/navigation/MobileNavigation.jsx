@@ -10,12 +10,20 @@ import NavSearch from "./NavSearch";
 
 const navigation = [
   {
-    label: "Explore",
+    label: "Courses",
     path: "/courses",
   },
   {
     label: "Categories",
     path: "/courses#catalog-filters",
+  },
+  {
+    label: "Experiences",
+    path: "/experiences",
+  },
+  {
+    label: "About",
+    path: "/about",
   },
 ];
 
@@ -34,7 +42,7 @@ export default function MobileNavigation({
   return (
     <div className="bg-ink fixed inset-0 z-[60] overflow-y-auto text-white lg:hidden">
       <div className="site-container flex min-h-screen flex-col">
-        <div className="flex h-[72px] items-center justify-between border-b border-white/15">
+        <div className="flex h-[72px] shrink-0 items-center justify-between border-b border-white/15">
           <Brand variant="light" />
 
           <button
@@ -47,7 +55,7 @@ export default function MobileNavigation({
           </button>
         </div>
 
-        <div className="py-7">
+        <div className="py-6 sm:py-7">
           <NavSearch
             search={search}
             onSearchChange={onSearchChange}
@@ -60,41 +68,53 @@ export default function MobileNavigation({
           aria-label="Mobile navigation"
           className="border-t border-white/15"
         >
-          {navigation.map((item, index) => (
-            <NavLink
-              key={item.label}
-              to={item.path}
-              onClick={onClose}
-              className="group flex items-center justify-between border-b border-white/15 py-6"
-            >
-              <div className="flex items-center gap-4">
-                <span className="font-mono text-[9px] font-bold tracking-[0.1em] text-white/30">
-                  {String(index + 1).padStart(2, "0")}
-                </span>
+          {navigation.map((item, index) => {
+            const isCategories = item.path.includes("#");
 
-                <span className="group-hover:text-lime text-[clamp(1.8rem,9vw,3rem)] leading-none font-black tracking-[-0.05em] uppercase transition-colors">
-                  {item.label}
-                </span>
-              </div>
+            return (
+              <NavLink
+                key={item.label}
+                to={item.path}
+                onClick={onClose}
+                className={({ isActive }) => {
+                  const active = isActive && !isCategories;
 
-              <HiArrowUpRight
-                aria-hidden="true"
-                className="group-hover:text-lime text-xl text-white/40 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
-              />
-            </NavLink>
-          ))}
+                  return [
+                    "group flex items-center justify-between gap-5 border-b border-white/15 py-5 sm:py-6",
+                    "transition-colors duration-200",
+                    active ? "text-lime" : "text-white",
+                  ].join(" ");
+                }}
+              >
+                <div className="flex min-w-0 items-center gap-4">
+                  <span className="shrink-0 font-mono text-[9px] font-bold tracking-[0.1em] text-white/30">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+
+                  <span className="group-hover:text-lime text-[clamp(1.7rem,8vw,2.8rem)] leading-none font-black tracking-[-0.055em] uppercase transition-colors">
+                    {item.label}
+                  </span>
+                </div>
+
+                <HiArrowUpRight
+                  aria-hidden="true"
+                  className="group-hover:text-lime shrink-0 text-xl text-white/35 transition duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
+                />
+              </NavLink>
+            );
+          })}
         </nav>
 
-        <div className="mt-7">
+        <div className="mt-6">
           <Link
             to="/cart"
             onClick={onClose}
-            className="focus-ring bg-lime text-ink flex min-h-14 items-center justify-between px-5"
+            className="focus-ring bg-lime text-ink flex min-h-14 items-center justify-between px-5 transition hover:bg-white"
           >
             <div className="flex items-center gap-3">
               <HiOutlineShoppingBag aria-hidden="true" className="text-xl" />
 
-              <span className="text-xs font-black tracking-[0.04em] uppercase">
+              <span className="font-mono text-[9px] font-black tracking-[0.08em] uppercase">
                 Learning cart
               </span>
             </div>
@@ -105,9 +125,17 @@ export default function MobileNavigation({
           </Link>
         </div>
 
-        <div className="mt-auto border-t border-white/15 py-6">
+        <div className="mt-auto flex items-end justify-between gap-5 border-t border-white/15 py-6">
           <p className="font-mono text-[8px] leading-5 font-semibold tracking-[0.08em] text-white/30 uppercase">
-            SkillMaine / Demo learning platform
+            SkillMaine
+            <br />
+            Demo learning platform
+          </p>
+
+          <p className="text-right font-mono text-[8px] leading-5 font-semibold tracking-[0.08em] text-white/20 uppercase">
+            Learn
+            <br />
+            By direction
           </p>
         </div>
       </div>

@@ -3,10 +3,13 @@ import DescriptionNoticeSection from "../components/home/DescriptionNoticeSectio
 import HeroSection from "../components/home/hero/HeroSection";
 import PopularCourses from "../components/home/PopularCourses";
 import TestimonialsSection from "../components/home/TestimonialsSection";
+import Seo from "../components/Seo";
 
 export default function Homepage() {
   return (
     <>
+      <Seo />
+
       <HeroSection />
 
       <section id="featured-courses" className="w-full">

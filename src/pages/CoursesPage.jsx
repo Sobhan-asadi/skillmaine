@@ -7,6 +7,7 @@ import CatalogCourseCard from "../components/catalog/CatalogCourseCard";
 import CatalogHero from "../components/catalog/CatalogHero";
 import CatalogSkeleton from "../components/catalog/CatalogSkeleton";
 import CatalogToolbar from "../components/catalog/CatalogToolbar";
+import Seo from "../components/Seo";
 
 const DEFAULT_SORT = "featured";
 
@@ -130,6 +131,11 @@ export default function CoursesPage() {
 
   return (
     <main>
+      <Seo
+        title="Courses"
+        description="Explore the SkillMaine course catalog, search by skill, filter learning options, and compare courses by category and level."
+      />
+
       <CatalogHero
         courseCount={courses.length}
         categoryCount={categories.size}
