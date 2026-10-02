@@ -1,0 +1,39 @@
+const COURSES_DATA_URL = "/data/courses.json";
+
+async function fetchCoursesData() {
+  const response = await fetch(COURSES_DATA_URL);
+
+  if (!response.ok) {
+    const error = new Error("Failed to fetch course data.");
+
+    error.status = response.status;
+
+    throw error;
+  }
+
+  return response.json();
+}
+
+export async function fetchCourses() {
+  const data = await fetchCoursesData();
+
+  return data.courses;
+}
+
+export async function fetchCourseById(courseId) {
+  const data = await fetchCoursesData();
+
+  const course = data.courses.find(
+    (item) => item.id === courseId,
+  );
+
+  if (!course) {
+    const error = new Error("Course not found.");
+
+    error.status = 404;
+
+    throw error;
+  }
+
+  return course;
+}
