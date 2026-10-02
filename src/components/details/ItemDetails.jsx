@@ -1,48 +1,21 @@
-import { useLocation } from "react-router-dom";
+import { useEffect } from "react";
 
 import CourseDetailMain from "./CourseDetailMain";
-import CourseDetailsHeader from "./CourseDetailsHeader ";
+import CourseDetailsHeader from "./CourseDetailsHeader";
 
-export default function ItemDetails() {
-  const location = useLocation();
-
-  const {
-    canceledPrice = 0,
-    courseImage = "",
-    desctiption = "",
-    level = "beginner",
-    price = 0,
-    rating = 0,
-    title = "",
-    tutorName = "",
-  } = location?.state || {};
-
-  if (!location?.state) {
-    return <h3 className="mt-10 text-center text-2xl">item not found</h3>;
-  }
+export default function ItemDetails({ course }) {
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "instant",
+    });
+  }, [course.id]);
 
   return (
-    <div>
-      {/* CourseDetailsHeader */}
-      <CourseDetailsHeader
-        title={title}
-        level={level}
-        desctiption={desctiption}
-        rating={rating}
-        price={price}
-        img={courseImage}
-      />
+    <main className="bg-canvas">
+      <CourseDetailsHeader course={course} />
 
-      {/* CourseDetailMain  */}
-      <CourseDetailMain
-        name={tutorName}
-        level={level}
-        rating={rating}
-        canceledPrice={canceledPrice}
-        price={price}
-        title={title}
-        courseImage={courseImage}
-      />
-    </div>
+      <CourseDetailMain course={course} />
+    </main>
   );
 }

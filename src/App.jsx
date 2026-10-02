@@ -3,9 +3,6 @@ import { Toaster } from "react-hot-toast";
 import { RouterProvider } from "react-router-dom";
 import { routes } from "./routes/route";
 
-import "@fontsource/jost";
-import "@fontsource/poppins/700.css";
-
 function App() {
   return (
     <>

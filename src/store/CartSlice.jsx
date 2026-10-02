@@ -1,30 +1,35 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+const initialState = {
+  items: [],
+  message: null,
+};
+
 const cartSlice = createSlice({
   name: "cart",
-  initialState: {
-    items: [],
-    message: null,
-  },
+  initialState,
   reducers: {
     addToCart(state, action) {
-      const existingCourse = state.items.findIndex(
-        (course) => course.name === action.payload.name,
-      );
+      const course = action.payload;
 
-      if (existingCourse === -1) {
-        state.items.push(action.payload);
-        state.message = "Course successfully added to cart!";
-      } else {
+      const isAlreadyInCart = state.items.some((item) => item.id === course.id);
+
+      if (isAlreadyInCart) {
         state.message = "This course is already in your cart.";
+        return;
       }
+
+      state.items.push(course);
+      state.message = "Course successfully added to cart!";
     },
 
     removeItem(state, action) {
-      const indexItem = state.items.findIndex(
-        (item) => item.name === action.payload,
-      );
-      state.items.splice(indexItem, 1);
+      state.items = state.items.filter((item) => item.id !== action.payload);
+    },
+
+    clearCart(state) {
+      state.items = [];
+      state.message = null;
     },
 
     clearMessage(state) {
@@ -33,5 +38,7 @@ const cartSlice = createSlice({
   },
 });
 
-export const { addToCart, removeItem, clearMessage } = cartSlice.actions;
+export const { addToCart, removeItem, clearCart, clearMessage } =
+  cartSlice.actions;
+
 export default cartSlice.reducer;

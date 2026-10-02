@@ -1,107 +1,190 @@
-import SimpleStarRating from "../SimpleStarRating";
+import {
+  HiArrowUpRight,
+  HiOutlineChartBar,
+  HiOutlineCodeBracket,
+  HiOutlineCursorArrowRays,
+  HiOutlinePaintBrush,
+} from "react-icons/hi2";
+import { Link } from "react-router-dom";
 
-const testimonialsData = {
-  title: "What Our Students Say",
-  subtitle: "Join thousands of satisfied learners worldwide",
-  testimonials: [
-    {
-      id: 1,
-      name: "Sarah Johnson",
-      role: "Frontend Developer",
-      rating: 5,
-      avatar: "/avatars/sarah.jpg",
-      text: "SkillMine transformed my career! The courses are practical and directly applicable to real-world projects.",
-      company: "TechCorp",
-    },
-
-    {
-      id: 3,
-      name: "Emily Rodriguez",
-      role: "Data Scientist",
-      rating: 5,
-      avatar: "",
-      text: "As a complete beginner, I found the courses incredibly well-structured. The instructors explain complex concepts simply.",
-      company: "DataInsights",
-    },
-    {
-      id: 2,
-      name: "Michael Chen",
-      role: "UX Designer",
-      rating: 4,
-      avatar: "/avatars/michael.jpg",
-      text: "The platform's intuitive interface made learning enjoyable. I landed my dream job after completing the design course.",
-      company: "DesignStudio",
-    },
-
-    {
-      id: 6,
-      name: "David Kim",
-      role: "DevOps Engineer",
-      rating: 5,
-      avatar: "/avatars/david.jpg",
-      text: "Comprehensive curriculum with hands-on labs. The certification boosted my credibility in the job market.",
-      company: "CloudSystems",
-    },
-  ],
-};
+const learningTracks = [
+  {
+    id: "01",
+    title: "Build",
+    field: "Development",
+    description:
+      "Create modern interfaces, understand application logic, and strengthen your web development workflow.",
+    skills: ["React", "JavaScript", "TypeScript", "Node.js"],
+    icon: HiOutlineCodeBracket,
+    accent: "bg-lime text-ink",
+    path: "/courses?category=Development",
+  },
+  {
+    id: "02",
+    title: "Design",
+    field: "Design",
+    description:
+      "Turn ideas into clear digital experiences with stronger visual, interface, and product design skills.",
+    skills: ["UI/UX", "Figma", "Product", "Motion"],
+    icon: HiOutlinePaintBrush,
+    accent: "bg-lavender text-ink",
+    path: "/courses?category=Design",
+  },
+  {
+    id: "03",
+    title: "Analyze",
+    field: "Data Science",
+    description:
+      "Work with data, recognize useful patterns, and develop foundations for data-driven problem solving.",
+    skills: ["Python", "Analysis", "Data", "ML"],
+    icon: HiOutlineChartBar,
+    accent: "bg-electric text-white",
+    path: "/courses?category=Data%20Science",
+  },
+  {
+    id: "04",
+    title: "Grow",
+    field: "Marketing",
+    description:
+      "Explore digital strategy, audience thinking, analytics, and the foundations of sustainable growth.",
+    skills: ["Strategy", "Content", "Analytics", "Growth"],
+    icon: HiOutlineCursorArrowRays,
+    accent: "bg-coral text-ink",
+    path: "/courses?category=Marketing",
+  },
+];
 
 export default function TestimonialsSection() {
   return (
-    <section className="bg-gradient-to from-gray-50 to-white py-16">
-      <div className="container mx-auto px-4">
-        <div className="mb-12 text-center">
-          <h2 className="mb-4 text-4xl font-bold text-gray-900">
-            {testimonialsData.title}
-          </h2>
+    <section className="bg-ink relative overflow-hidden py-20 text-white sm:py-24 lg:py-28">
+      <div
+        aria-hidden="true"
+        className="grid-lines pointer-events-none absolute inset-0 opacity-[0.07]"
+      />
 
-          <p className="mx-auto max-w-2xl text-lg text-gray-600">
-            {testimonialsData.subtitle}
-          </p>
-        </div>
+      <div className="site-container relative">
+        <div className="grid gap-10 border-b border-white/15 pb-12 lg:grid-cols-[minmax(0,1fr)_360px] lg:items-end lg:gap-16 lg:pb-16">
+          <div>
+            <div className="flex items-center gap-3">
+              <span className="bg-coral h-2.5 w-2.5" />
 
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {testimonialsData.testimonials.map((testimonial) => (
-            <div
-              key={testimonial.id}
-              className="rounded-2xl border border-gray-100 bg-white p-6 shadow-lg transition-all duration-300 hover:shadow-xl"
-            >
-              <SimpleStarRating rating={testimonial.rating} />
-
-              <p className="mb-6 leading-relaxed text-gray-700">
-                "{testimonial.text}"
+              <p className="section-kicker text-white/40">
+                Learning outcomes / 04
               </p>
-
-              <div className="flex items-center gap-4">
-                <div className="flex h-12 w-12 items-center justify-center overflow-hidden rounded-full bg-gradient-to-r from-purple-500 to-pink-500 font-bold text-white">
-                  {testimonial.avatar && testimonial.avatar !== "" ? (
-                    <img
-                      src={testimonial.avatar}
-                      alt={testimonial.name}
-                      className="h-full w-full object-cover"
-                      onError={(e) => {
-                        e.target.style.display = "none";
-                      }}
-                    />
-                  ) : (
-                    <span>{testimonial.name.charAt(0)}</span>
-                  )}
-                </div>
-                <div>
-                  <h4 className="font-semibold text-gray-900">
-                    {testimonial.name}
-                  </h4>
-                  <p className="text-sm text-gray-600">{testimonial.role}</p>
-                  <p className="text-xs text-gray-500">{testimonial.company}</p>
-                </div>
-              </div>
             </div>
-          ))}
+
+            <h2 className="mt-6 max-w-[850px] text-[clamp(2.8rem,6vw,6.4rem)] leading-[0.88] font-black tracking-[-0.07em] uppercase">
+              Learn for what
+              <br />
+              you want to <span className="text-coral">do.</span>
+            </h2>
+          </div>
+
+          <div>
+            <p className="max-w-[350px] text-sm leading-7 text-white/50 sm:text-base">
+              Start from the outcome you care about, then explore the field and
+              courses that can help you develop that skill set.
+            </p>
+
+            <Link
+              to="/courses"
+              className="group text-lime mt-7 inline-flex items-center gap-3 text-xs font-black tracking-[0.05em] uppercase"
+            >
+              View full catalog
+              <HiArrowUpRight
+                aria-hidden="true"
+                className="text-lg transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
+              />
+            </Link>
+          </div>
         </div>
 
-        <div className="mt-12 text-center">
-          <button className="rounded-xl bg-purple-600 px-8 py-3 font-semibold text-white transition-colors duration-300 hover:bg-purple-700">
-            Read More Success Stories
-          </button>
+        <div className="grid md:grid-cols-2 xl:grid-cols-4">
+          {learningTracks.map((track) => {
+            const Icon = track.icon;
+
+            return (
+              <Link
+                key={track.id}
+                to={track.path}
+                className="group relative flex min-h-[420px] flex-col border-b border-white/15 py-8 md:odd:border-r md:odd:pr-7 md:even:pl-7 xl:border-r xl:border-b-0 xl:px-7 xl:first:pl-0 xl:last:border-r-0 xl:last:pr-0"
+              >
+                <div className="flex items-start justify-between gap-4">
+                  <span className="font-mono text-[9px] font-bold tracking-[0.12em] text-white/30">
+                    / {track.id}
+                  </span>
+
+                  <span
+                    className={`flex h-12 w-12 items-center justify-center ${track.accent}`}
+                  >
+                    <Icon aria-hidden="true" className="text-xl" />
+                  </span>
+                </div>
+
+                <div className="mt-14">
+                  <p className="font-mono text-[9px] font-bold tracking-[0.12em] text-white/35 uppercase">
+                    {track.field}
+                  </p>
+
+                  <h3 className="group-hover:text-lime mt-3 text-[clamp(2.4rem,4vw,4rem)] leading-[0.9] font-black tracking-[-0.065em] uppercase transition-colors duration-300">
+                    {track.title}
+                  </h3>
+
+                  <p className="mt-5 text-sm leading-6 text-white/50">
+                    {track.description}
+                  </p>
+                </div>
+
+                <div className="mt-auto pt-8">
+                  <div className="flex flex-wrap gap-2">
+                    {track.skills.map((skill) => (
+                      <span
+                        key={skill}
+                        className="border border-white/15 px-2.5 py-1 font-mono text-[8px] font-semibold tracking-[0.06em] text-white/45 uppercase"
+                      >
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+
+                  <div className="mt-7 flex items-center justify-between border-t border-white/15 pt-4">
+                    <span className="font-mono text-[9px] font-bold tracking-[0.08em] text-white/35 uppercase">
+                      Explore field
+                    </span>
+
+                    <HiArrowUpRight
+                      aria-hidden="true"
+                      className="group-hover:text-lime text-xl text-white/50 transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
+                    />
+                  </div>
+                </div>
+              </Link>
+            );
+          })}
+        </div>
+
+        <div className="mt-12 flex flex-col gap-6 border-2 border-white/15 bg-white/[0.035] p-5 sm:flex-row sm:items-center sm:justify-between sm:p-7">
+          <div>
+            <p className="text-lime font-mono text-[9px] font-bold tracking-[0.12em] uppercase">
+              Your next skill starts somewhere
+            </p>
+
+            <p className="mt-2 max-w-[600px] text-sm leading-6 text-white/50">
+              Browse the catalog, compare the available topics, and choose the
+              course that fits what you want to learn next.
+            </p>
+          </div>
+
+          <Link
+            to="/courses"
+            className="group bg-lime text-ink flex min-h-12 shrink-0 items-center justify-between gap-8 px-5 text-xs font-black uppercase transition duration-300 hover:-translate-y-1 hover:bg-white"
+          >
+            Explore courses
+            <HiArrowUpRight
+              aria-hidden="true"
+              className="text-lg transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
+            />
+          </Link>
         </div>
       </div>
     </section>
